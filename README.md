@@ -11,7 +11,7 @@ There are areas in the repository which should be considered as a draft, not fin
 Unlicense
 
 # Instructions
-* Download a copy of the pfSense image `pfSense-CE-2.6.0-RELEASE-amd64.iso` to the `input/` directory and then run `packer build pfsenese-<qemu|vbox>.json`.
+* Download a copy of the pfSense image `pfSense-CE-2.6.0-RELEASE-amd64.iso` to the `iso/` directory and then run `packer build pfsense-vbox.json`.
 * `remote-qemu-vnc.sh|remote-vbox-rdp.sh` can be used to view the build process. Do not manually press keys during viewing.
 * Created images are placed in the `output-<qemu|vbox>/` directory.
 * `aws/import-role/import-role.sh` contains the required roles for the AWS import processes. Policies need to be modified to match your AWS account.

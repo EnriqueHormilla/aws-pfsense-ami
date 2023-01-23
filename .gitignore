@@ -7,7 +7,7 @@
 
 # .tfvars files
 *.tfvars
-
+input/*.iso
 # packer
 output*
 *cache*
