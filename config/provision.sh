@@ -13,3 +13,7 @@ sed -i -E 's$<if>em1</if>$<if>ena1</if>$g' /conf.default/config.xml
 echo "grep -H <if> ... output:"
 grep -H '<if>' /conf/config.xml
 grep -H '<if>' /conf.default/config.xml
+
+
+sed -i -E 's$<if>em0</if>$<if>ena0</if>$g' /conf/config.xml
+cp /conf/config.xml /conf/config.xml.default

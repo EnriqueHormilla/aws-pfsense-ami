@@ -1,0 +1,8 @@
+{
+    "Description": "pfSense CE 2.6.0 one nic",
+    "Format": "VMDK",
+    "UserBucket": {
+        "S3Bucket": "thn-infra-tools-prd",
+        "S3Key": "pfSense CE 2.6.0-one-mic.vmdk"
+    }
+}

@@ -2,27 +2,30 @@
   "builders": [
     {
       "boot_command": [
-        "<wait5><enter>",
-        "<wait5><enter>",
-        "<wait5><enter>",
-        "<wait5><down>",
-        "<wait5><enter>",
-        "<wait5><left>",
-        "<wait5><enter>",
-        "<wait5><enter>",
-        "<wait5><down>",
-        "<wait5><enter>",
-        "<wait5><enter>",
-        "<wait5><enter>",
-        "<wait10><wait10><wait10><wait10><enter>",
-        "<wait5><enter>",
-        "<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>",
-        "8<wait5><enter>",
-        "curl http://{{ .HTTPIP }}:{{ .HTTPPort }}/config.xml >/conf/config.xml<wait5><enter>",
-        "reboot<wait5><enter>"
-      ],
-      "boot_wait": "30s",
-      "disk_size": "4096",
+        "<wait2><enter>",
+        "<wait1><enter>",
+        "<wait1><enter>",
+        "<wait1><down>",        
+        "<wait1><enter>",
+        "<wait1><enter>",
+        "<wait1><enter>",
+        "<wait1><spacebar><enter>",
+        "<wait1><left><enter>",
+        "<wait70>",
+        "<wait1><left><enter>",                         
+        "cp /conf/config.xml /conf/config.xml.default<enter>", 
+        "reboot<enter><wait90>",
+        "<wait30>n<enter>" ,        
+        "<wait30>em0<enter>" ,  
+        "<wait30><enter>",
+        "<wait30><enter>",
+        "<wait30>y<enter>",                             
+        "8<enter>",
+        "<wait20>",
+        "/usr/local/bin/curl http://{{ .HTTPIP }}:{{ .HTTPPort }}/config.xml > /conf/config.xml<wait5><enter>"         
+    ],
+      "boot_wait": "60s",
+      "disk_size": "8192",
       "format": "ovf",
       "guest_additions_mode": "disable",
       "guest_os_type": "FreeBSD_64",
@@ -33,48 +36,20 @@
       "iso_url": "input/pfSense-CE-2.6.0-RELEASE-amd64.iso",
       "output_directory": "output-vbox",
       "shutdown_command": "shutdown -p now",
-      "ssh_password": "pfsense",
+      "ssh_password": "root",
       "ssh_port": "6736",
       "ssh_timeout": "3600s",
       "ssh_username": "root",
       "type": "virtualbox-iso",
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--boot1",
-          "disk"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--boot2",
-          "dvd"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "1"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "1024"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--natpf1",
-          "https,tcp,,7373,,7373"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--nic2",
-          "intnet"
-        ]
+        [ "modifyvm", "{{.Name}}", "--boot1", "disk" ],
+        [ "modifyvm", "{{.Name}}", "--boot2", "dvd" ],
+        [ "modifyvm", "{{.Name}}", "--cpus", "2" ],
+        [ "modifyvm", "{{.Name}}", "--memory", "2024" ],
+        [ "modifyvm", "{{.Name}}", "--natpf1", "https,tcp,,7373,,7373" ],        
+        [ "modifyvm", "{{.Name}}", "--nic1", "bridged" ],
+        [ "modifyvm", "{{.Name}}", "--bridgeadapter1", "en5" ],
+        [ "modifyvm", "{{.Name}}", "--cableconnected1", "on" ]  
       ],
       "vm_name": "pfSense-CE-2.6.0",
       "vrdp_bind_address": "127.0.0.1",
